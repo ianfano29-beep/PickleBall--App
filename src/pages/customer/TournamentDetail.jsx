@@ -211,7 +211,7 @@ export default function TournamentDetail() {
         <div className="min-h-screen court-grid pt-20 pb-12 px-4">
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
-                <div className="pt-6 mb-8">
+                <div className="pt-6 mb-8 animate-fade-in animate-slide-up">
                     <div className="flex flex-wrap items-center gap-3 mb-4">
                         {tournament.status !== "completed" && (
                             <span className={`text-xs px-3 py-1.5 rounded-full border ${tournament.status === "ongoing" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/20"
@@ -226,8 +226,8 @@ export default function TournamentDetail() {
                         )}
                         {tournament.prize && <span className="badge-gold">Prize: {tournament.prize}</span>}
                     </div>
-                    <h1 className="font-display text-5xl tracking-wider text-white mb-2">{tournament.name}</h1>
-                    {tournament.description && <p className="text-slate-400 max-w-2xl">{tournament.description}</p>}
+                    <h1 className="font-display text-5xl tracking-wider text-white mb-2 drop-shadow-[0_0_20px_rgba(245,158,11,0.2)]">{tournament.name}</h1>
+                    {tournament.description && <p className="text-slate-400 max-w-2xl text-lg">{tournament.description}</p>}
                     {tournament.announcement && (
                         <div className="mt-4 flex items-start gap-3 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 max-w-2xl">
                             <Megaphone size={18} className="text-amber-400 shrink-0 mt-0.5" />
@@ -237,7 +237,7 @@ export default function TournamentDetail() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2 space-y-5">
+                    <div className="lg:col-span-2 space-y-5 animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                         {/* Info cards */}
                         <div className="card p-6">
                             <h3 className="text-white font-semibold mb-4">Tournament Details</h3>
@@ -365,8 +365,8 @@ export default function TournamentDetail() {
                     </div>
 
                     {/* Right sidebar */}
-                    <div>
-                        <div className="card p-5 sticky top-24">
+                    <div className="animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+                        <div className="card p-5 sticky top-24 shadow-[0_0_30px_rgba(0,0,0,0.5)] border-amber-500/10">
                             {myReg ? (
                                 <div>
                                     <div className="flex items-center gap-2 mb-4">

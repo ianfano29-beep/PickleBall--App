@@ -32,21 +32,21 @@ export default function Tournaments() {
     return (
         <div className="min-h-screen court-grid pt-20 pb-12 px-4">
             <div className="max-w-6xl mx-auto">
-                <div className="text-center pt-6 mb-10">
-                    <h1 className="font-display text-5xl tracking-widest text-white">ALL <span className="gradient-gold">TOURNAMENTS</span></h1>
-                    <p className="text-slate-500 mt-2">Find and register for your next competition</p>
+                <div className="text-center pt-6 mb-10 animate-fade-in">
+                    <h1 className="font-display text-5xl tracking-widest text-white drop-shadow-[0_0_20px_rgba(245,158,11,0.2)] animate-slide-up">ALL <span className="gradient-gold">TOURNAMENTS</span></h1>
+                    <p className="text-slate-500 mt-2 animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>Find and register for your next competition</p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-col sm:flex-row gap-3 mb-8 animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
                     <div className="relative flex-1">
                         <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <input type="text" className="input-field pl-10" placeholder="Search tournaments..."
+                        <input type="text" className="input-field pl-10 bg-slate-900/90 focus:shadow-[0_0_15px_rgba(245,158,11,0.2)]" placeholder="Search tournaments..."
                             value={search} onChange={e => setSearch(e.target.value)} />
                     </div>
                     <div className="flex gap-2 flex-wrap">
                         {["all", "upcoming", "ongoing", "completed"].map(s => (
                             <button key={s} onClick={() => setStatusFilter(s)}
-                                className={`px-4 py-2.5 rounded-xl text-sm font-medium capitalize transition-all ${statusFilter === s ? "bg-amber-500 text-slate-950" : "bg-slate-800 text-slate-400 hover:text-white"}`}>
+                                className={`px-4 py-2.5 rounded-xl text-sm font-medium capitalize transition-all duration-300 ${statusFilter === s ? "bg-amber-500 text-slate-950 shadow-[0_0_15px_rgba(245,158,11,0.3)]" : "bg-slate-800/90 text-slate-400 hover:text-white hover:bg-slate-700/90"}`}>
                                 {s}
                             </button>
                         ))}
@@ -64,10 +64,10 @@ export default function Tournaments() {
                         <p className="text-slate-600 text-sm mt-1">Try adjusting your filters</p>
                     </div>
                 ) : (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
                         {filtered.map(t => (
-                            <div key={t.id} className="card overflow-hidden hover:border-amber-500/30 transition-all hover:-translate-y-1 duration-200">
-                                <div className="h-1.5 bg-gradient-to-r from-amber-500 to-amber-300" />
+                            <div key={t.id} className="card overflow-hidden hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]">
+                                <div className="h-1.5 bg-gradient-to-r from-amber-500 to-amber-300 shadow-[0_2px_10px_rgba(245,158,11,0.5)]" />
                                 <div className="p-5">
                                     <div className="flex items-center justify-between mb-3">
                                         {t.status !== "completed" ? (

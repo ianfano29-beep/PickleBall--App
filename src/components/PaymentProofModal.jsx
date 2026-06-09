@@ -4,8 +4,8 @@ export default function PaymentProofModal({ open, url, title, onClose }) {
     if (!open || !url) return null;
 
     return (
-        <div className="fixed inset-0 modal-bg z-[60] flex items-center justify-center px-4 py-8" role="dialog" aria-modal="true">
-            <div className="card p-4 max-w-lg w-full max-h-[90vh] flex flex-col border-amber-500/20">
+        <div className="fixed inset-0 modal-bg z-[60] flex items-center justify-center px-4 py-8 animate-fade-in" role="dialog" aria-modal="true">
+            <div className="card p-4 max-w-lg w-full max-h-[90vh] flex flex-col border-amber-500/20 shadow-[0_0_40px_rgba(245,158,11,0.15)] animate-slide-up">
                 <div className="flex items-center justify-between gap-3 mb-3">
                     <h3 className="text-white font-semibold text-sm truncate">{title || "GCash payment proof"}</h3>
                     <div className="flex items-center gap-2 shrink-0">

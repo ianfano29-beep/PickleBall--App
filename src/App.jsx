@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import { ProtectedRoute, AdminRoute } from "./components/ProtectedRoute";
+import ThreeBackground from "./components/ThreeBackground";
 
 // Customer Pages
 import Home from "./pages/customer/Home";
@@ -24,6 +25,7 @@ import AdminPlayers from "./pages/admin/AdminPlayers";
 export default function App() {
   return (
     <AuthProvider>
+      <ThreeBackground>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -62,6 +64,7 @@ export default function App() {
           }}
         />
       </BrowserRouter>
+      </ThreeBackground>
     </AuthProvider>
   );
 }

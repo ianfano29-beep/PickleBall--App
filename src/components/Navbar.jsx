@@ -35,12 +35,12 @@ export default function Navbar() {
     const links = isAdmin ? adminLinks : customerLinks;
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 glass">
+        <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link to={isAdmin ? "/admin" : "/"} className="flex items-center gap-2.5 group">
-                        <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:bg-amber-400 transition-colors">
+                    <Link to={isAdmin ? "/admin" : "/"} className="flex items-center gap-2.5 group hover:scale-105 transition-transform duration-300">
+                        <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition-all duration-300">
                             <Trophy size={18} className="text-slate-950" />
                         </div>
                         <span className="font-display text-xl tracking-widest">
@@ -57,7 +57,7 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center gap-1">
                         {links.map(({ to, label }) => (
                             <Link key={to} to={to}
-                                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${isActive(to) ? "text-amber-400 bg-amber-500/10" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}>
+                                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${isActive(to) ? "text-amber-400 bg-amber-500/10 shadow-[inset_0_0_10px_rgba(245,158,11,0.1)]" : "text-slate-400 hover:text-white hover:bg-slate-800/80 hover:shadow-md"}`}>
                                 {label}
                             </Link>
                         ))}
@@ -78,7 +78,7 @@ export default function Navbar() {
                                     <ChevronDown size={14} className="text-slate-500 hidden sm:block" />
                                 </button>
                                 {dropOpen && (
-                                    <div className="absolute right-0 top-12 w-48 card shadow-2xl py-2 z-50">
+                                    <div className="absolute right-0 top-12 w-48 card shadow-2xl py-2 z-50 animate-slide-up border border-slate-700/50">
                                         {!isAdmin && (
                                             <>
                                                 <Link to="/profile" onClick={() => setDropOpen(false)}
@@ -116,7 +116,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu */}
                 {open && (
-                    <div className="md:hidden py-3 border-t border-slate-800">
+                    <div className="md:hidden py-3 border-t border-slate-800/50 animate-slide-up bg-space-900/95 absolute left-0 right-0 px-4 shadow-xl">
                         {links.map(({ to, label }) => (
                             <Link key={to} to={to} onClick={() => setOpen(false)}
                                 className={`flex items-center px-4 py-3 rounded-xl mb-1 text-sm font-medium transition-colors ${isActive(to) ? "text-amber-400 bg-amber-500/10" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}>
@@ -129,11 +129,16 @@ export default function Navbar() {
                                 <User size={14} /> My Profile
                             </Link>
                         )}
-                        {user && (
+                        {user ? (
                             <button onClick={handleLogout}
                                 className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-500/10 w-full mt-1">
                                 <LogOut size={14} /> Sign Out
                             </button>
+                        ) : (
+                            <Link to="/login" onClick={() => setOpen(false)}
+                                className="flex items-center gap-2 px-4 py-3 rounded-xl mb-1 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                                <User size={14} /> Sign In
+                            </Link>
                         )}
                     </div>
                 )}
