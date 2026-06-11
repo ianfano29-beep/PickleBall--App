@@ -40,9 +40,9 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link to={isAdmin ? "/admin" : "/"} className="flex items-center gap-2.5 group hover:scale-105 transition-transform duration-300">
-                        <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition-all duration-300">
+                        {/* <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition-all duration-300">
                             <Trophy size={18} className="text-slate-950" />
-                        </div>
+                        </div> */}
                         <span className="font-display text-xl tracking-widest">
                             <span className="text-white">PALM DINK & </span><span className="gradient-gold">SMASH COURT</span>
                         </span>
@@ -100,11 +100,11 @@ export default function Navbar() {
                                 )}
                             </div>
                         ) : (
-                            <div className="flex items-center gap-2">
-                                <Link to="/login" className="text-slate-400 hover:text-white text-sm font-medium px-4 py-2 hidden sm:block transition-colors">
+                            <div className="flex items-center gap-1 sm:gap-2">
+                                <Link to="/login" className="text-slate-400 hover:text-white text-sm font-medium px-2 sm:px-4 py-2 transition-colors">
                                     Sign In
                                 </Link>
-                                <Link to="/register" className="btn-gold text-sm py-2 px-4">Join Now</Link>
+                                <Link to="/register" className="btn-gold text-sm py-1.5 sm:py-2 px-3 sm:px-4">Join Now</Link>
                             </div>
                         )}
                         <button onClick={() => setOpen(!open)}

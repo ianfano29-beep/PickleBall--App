@@ -30,7 +30,7 @@ export default function Home() {
                 <div className="max-w-6xl mx-auto text-center animate-fade-in">
                     <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 mb-6 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
                         <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-                        <span className="text-amber-400 text-sm font-medium">Season 2025 — Registrations Open</span>
+                        <span className="text-amber-400 text-sm font-medium">Season 2026 — Registrations Open</span>
                     </div>
                     <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-widest text-white leading-tight mb-6 drop-shadow-[0_0_30px_rgba(245,158,11,0.2)] animate-slide-up">
                         PALM DINK & <span className="gradient-gold">SMASH COURT</span>
