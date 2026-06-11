@@ -1,27 +1,9 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../firebase";
-import { collection, query, where, orderBy, limit } from "firebase/firestore";
-import { getDocsCachedFirst } from "../../lib/firestoreFetch";
 import { Trophy, Users, Calendar, Zap, ChevronRight, Shield } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import { MODE_COLORS, isTournamentVisibleToUsers } from "../../lib/tournamentModes";
 
 export default function Home() {
     const { user } = useAuth();
-    const [tournaments, setTournaments] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const q = query(collection(db, "tournaments"), where("status", "in", ["upcoming", "ongoing"]), orderBy("createdAt", "desc"), limit(4));
-                const snap = await getDocsCachedFirst(q);
-                setTournaments(snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(isTournamentVisibleToUsers));
-            } catch { setTournaments([]); }
-            setLoading(false);
-        })();
-    }, []);
 
     return (
         <div className="min-h-screen court-grid">
@@ -84,55 +66,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Open Tournaments */}
-            <section className="py-20 px-4 bg-slate-900/40">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex items-end justify-between mb-10">
-                        <div>
-                            <h2 className="font-display text-4xl tracking-wider text-white">OPEN <span className="gradient-gold">TOURNAMENTS</span></h2>
-                            <p className="text-slate-500 mt-1">Register before slots fill up</p>
-                        </div>
-                        <Link to="/tournaments" className="text-amber-400 hover:text-amber-300 text-sm font-medium flex items-center gap-1">
-                            View All <ChevronRight size={16} />
-                        </Link>
-                    </div>
-                    {loading ? (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {[1, 2, 3, 4].map(i => <div key={i} className="card h-52 shimmer" />)}
-                        </div>
-                    ) : tournaments.length === 0 ? (
-                        <div className="card p-12 text-center">
-                            <Trophy size={40} className="text-slate-700 mx-auto mb-3" />
-                            <p className="text-slate-400">No active tournaments yet. Check back soon!</p>
-                        </div>
-                    ) : (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {tournaments.map(t => (
-                                <div key={t.id} className="card p-5 hover:border-amber-500/30 transition-all hover:-translate-y-1 duration-200">
-                                    <div className="flex items-center justify-between mb-3">
-                                        <span className={`text-xs px-2.5 py-1 rounded-full border ${t.status === "ongoing" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/20" : "bg-amber-500/20 text-amber-400 border-amber-500/20"}`}>
-                                            {t.status === "ongoing" ? "Live" : "Upcoming"}
-                                        </span>
-                                        <span className="text-slate-500 text-xs">{t.date}</span>
-                                    </div>
-                                    <h3 className="text-white font-semibold mb-2 leading-tight">{t.name}</h3>
-                                    <div className="flex flex-wrap gap-1 mb-3">
-                                        {(t.modes || []).map(m => (
-                                            <span key={m} className={`text-xs px-2 py-0.5 rounded-full border ${MODE_COLORS[m] || "bg-slate-700 text-slate-400 border-slate-600"}`}>{m}</span>
-                                        ))}
-                                    </div>
-                                    <div className="flex items-center justify-between text-sm mb-4">
-                                        <span className="text-slate-500 flex items-center gap-1"><Users size={12} /> {t.registrations || 0} registered</span>
-                                    </div>
-                                    <Link to={`/tournaments/${t.id}`} className="btn-gold w-full text-sm py-2 text-center block">
-                                        View & Register
-                                    </Link>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </section>
+
 
             {/* Admin Entry */}
             <section className="py-16 px-4">
